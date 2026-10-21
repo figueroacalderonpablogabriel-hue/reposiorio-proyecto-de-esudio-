@@ -1,0 +1,388 @@
+/* Colores, bordes y fuente principal de la página */
+:root {
+  --bg: #bea599;
+  --card: #d1a9a9;
+  --ink: #1f2340;
+  --muted: #64688a;
+  --line: #352f2f;
+  --accent: #5e5858;
+  --accent-dark: #685959;
+  --ok: #059669;
+  --err: #dc2626;
+  --radius: 16px;
+  --font: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+/* Reset básico para que los bordes y rellenos no modifiquen los tamaños fijados */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  color: var(--ink);
+  line-height: 1.45;
+  background: radial-gradient(circle at top left, #e0e3ff, var(--bg) 45%);
+  min-height: 100vh;
+}
+
+/* Marca con un borde resaltado el elemento activo cuando se usa el teclado */
+:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Contenedor global de la página */
+.page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 28px clamp(14px, 4vw, 32px) 56px;
+}
+
+/* Barra superior con título y botón de regresar */
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.eyebrow {
+  margin: 0;
+  font-size: .8rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+h1 {
+  margin: 2px 0 0;
+  font-size: clamp(1.6rem, 5vw, 2.3rem);
+}
+
+.back {
+  color: var(--accent-dark);
+  font-weight: 600;
+  text-decoration: none;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: #fff;
+  border: 1px solid var(--line);
+  margin: 30px;
+}
+
+.back:hover {
+  background: #f5f5ff;
+}
+
+/* Caja de avisos o mensajes de alerta */
+.notice {
+  margin: 16px 0 20px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: #fff8e1;
+  border: 1px solid #f3dc8c;
+  color: #6b5300;
+  font-size: .9rem;
+}
+
+/* Estructura en dos columnas: formularios a la izquierda y resumen a la derecha */
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: 22px;
+  align-items: start;
+}
+
+.forms {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* Estilos de las tarjetas y pasos numerados del formulario */
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 22px;
+  box-shadow: 0 8px 24px rgba(55, 48, 163, .08);
+}
+
+fieldset.card {
+  margin: 0;
+  min-width: 0;
+}
+
+legend {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 8px;
+  font-weight: 800;
+  font-size: 1.05rem;
+}
+
+/* Círculo con el número de cada paso */
+.step {
+  display: inline-grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  font-size: .85rem;
+}
+
+.form-tools {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Campos de entrada e inputs del formulario */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Hace que un campo ocupe todo el ancho de la fila */
+.field.full {
+  grid-column: 1 / -1;
+}
+
+label {
+  font-weight: 600;
+  font-size: .9rem;
+}
+
+.opt {
+  font-weight: 400;
+  color: var(--muted);
+  font-size: .8rem;
+}
+
+input, select {
+  min-height: 46px;
+  padding: 0 14px;
+  border: 1.5px solid var(--line);
+  border-radius: 12px;
+  background: #fafaff;
+  color: var(--ink);
+  font: inherit;
+}
+
+input:focus, select:focus {
+  border-color: var(--accent);
+  background: #fff;
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(79, 70, 229, .15);
+}
+
+/* Estilos cuando un campo de texto tiene un error de validación */
+input.invalid, select.invalid {
+  border-color: var(--err);
+  background: #fff5f5;
+}
+
+.error {
+  min-height: 1em;
+  color: var(--err);
+  font-size: .8rem;
+}
+
+/* Tarjeta del resumen de compra (se queda fija al hacer scroll) */
+.summary {
+  position: sticky;
+  top: 20px;
+}
+
+.summary h2 {
+  margin: 0 0 12px;
+  font-size: 1.1rem;
+}
+
+.summary__items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.summary__items li {
+  display: grid;
+  grid-template-columns: 48px 1fr auto;
+  gap: 12px;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.summary__items img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  background: #fff;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+}
+
+/* Corta los títulos largos a dos líneas para no descuadrar la tarjeta */
+.item-title {
+  margin: 0;
+  font-size: .85rem;
+  font-weight: 600;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.item-sub {
+  margin: 0;
+  font-size: .75rem;
+  color: var(--muted);
+}
+
+.item-price {
+  font-weight: 700;
+  font-size: .9rem;
+}
+
+.totals {
+  margin: 14px 0;
+}
+
+.totals div {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 0;
+  color: var(--muted);
+}
+
+.totals dt, .totals dd {
+  margin: 0;
+}
+
+.totals .grand {
+  margin-top: 6px;
+  padding-top: 10px;
+  border-top: 2px dashed var(--line);
+  color: var(--ink);
+  font-weight: 800;
+  font-size: 1.2rem;
+}
+
+/* Estilos de botones y variantes */
+.btn {
+  display: inline-block;
+  min-height: 46px;
+  padding: 12px 20px;
+  border: 0;
+  border-radius: 12px;
+  background: var(--accent);
+  color: #fff;
+  font: inherit;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: var(--accent-dark);
+}
+
+.btn--soft {
+  background: #e8e9ff;
+  color: var(--accent-dark);
+  min-height: 40px;
+  padding: 8px 16px;
+  font-size: .85rem;
+}
+
+.btn--soft:hover {
+  background: #d9dbff;
+}
+
+.btn--pay {
+  width: 100%;
+  font-size: 1.05rem;
+  background: linear-gradient(135deg, var(--accent), #7c3aed);
+}
+
+.btn--pay:disabled {
+  opacity: .5;
+  cursor: not-allowed;
+}
+
+.secure {
+  margin: 12px 0 0;
+  text-align: center;
+  font-size: .78rem;
+  color: var(--muted);
+}
+
+/* Pantallas de confirmación o carrito vacío */
+.empty, .success {
+  text-align: center;
+  max-width: 520px;
+  margin: 40px auto;
+  padding: 36px 24px;
+}
+
+.check {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 12px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--ok);
+  color: #fff;
+  font-size: 2rem;
+}
+
+.order {
+  color: var(--muted);
+}
+
+/* Utilidad para ocultar elementos en pantalla */
+[hidden] {
+  display: none !important;
+}
+
+/* Adaptación para pantallas pequeñas (celulares y tablets) */
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+  .summary {
+    position: static;
+    order: -1;
+  }
+}
+
+@media (max-width: 560px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .card {
+    padding: 16px;
+  }
+}

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Finalizar compra · Tienda FakeStore</title>
+  <link rel="stylesheet" href="css/checkout.css">
+</head>
+<body>
+  <div class="page">
+    <header class="top">
+      <div>
+        <p class="eyebrow">Tienda FakeStore</p>
+        <h1>Finalizar compra</h1>
+      </div>
+      <a class="back" href="index.html"> Volver a la tienda</a>
+    </header>
+
+    
+
+    <div id="empty" class="card empty" hidden>
+      <h2>Tu carrito está vacío</h2>0
+      <p>Agrega productos desde la tienda para continuar con la compra.</p>
+      <a class="btn" href="index.html">Ir a la tienda</a>
+    </div>
+
+    <div id="layout" class="layout">
+      <form id="checkout-form" class="forms" novalidate>
+        <div class="form-tools">
+          <button type="button" id="autofill" class="btn btn--soft">Autorrellenar datos de prueba</button>
+        </div>
+
+        <fieldset class="card">
+          <legend><span class="step">1</span> Datos de contacto</legend>
+          <div class="grid">
+            <div class="field full">
+              <label for="name">Nombre completo</label>
+              <input id="name" name="name" type="text" autocomplete="name" placeholder="Ej: Laura Gómez" required>
+              <small class="error" id="name-error"></small>
+            </div>
+            <div class="field">
+              <label for="email">Correo electrónico</label>
+              <input id="email" name="email" type="email" autocomplete="email" placeholder="laura@correo.com" required>
+              <small class="error" id="email-error"></small>
+            </div>
+            <div class="field">
+              <label for="phone">Teléfono</label>
+              <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="+57 300 123 4567" required>
+              <small class="error" id="phone-error"></small>
+            </div>
+            <div class="field">
+              <label for="docType">Tipo de documento</label>
+              <select id="docType" name="docType" required>
+                <option value="">Selecciona...</option>
+                <option value="CC">Cédula de ciudadanía</option>
+                <option value="CE">Cédula de extranjería</option>
+                <option value="TI">Tarjeta de identidad</option>
+                <option value="PAS">Pasaporte</option>
+                <option value="NIT">NIT</option>
+              </select>
+              <small class="error" id="docType-error"></small>
+            </div>
+            <div class="field">
+              <label for="docNumber">Número de documento</label>
+              <input id="docNumber" name="docNumber" type="text" inputmode="numeric" placeholder="1234567890" required>
+              <small class="error" id="docNumber-error"></small>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="card">
+          <legend><span class="step">2</span> Dirección de envío</legend>
+          <div class="grid">
+            <div class="field">
+              <label for="country">País</label>
+              <select id="country" name="country" required>
+                <option>Colombia</option><option>México</option><option>Argentina</option>
+                <option>Chile</option><option>Perú</option><option>Ecuador</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="state">Departamento / Estado</label>
+              <input id="state" name="state" type="text" placeholder="Cundinamarca" required>
+              <small class="error" id="state-error"></small>
+            </div>
+            <div class="field">
+              <label for="city">Ciudad</label>
+              <input id="city" name="city" type="text" placeholder="Bogotá" required>
+              <small class="error" id="city-error"></small>
+            </div>
+            <div class="field">
+              <label for="zip">Código postal <span class="opt">(opcional)</span></label>
+              <input id="zip" name="zip" type="text" inputmode="numeric" placeholder="110111">
+            </div>
+            <div class="field full">
+              <label for="address">Dirección</label>
+              <input id="address" name="address" type="text" autocomplete="street-address" placeholder="Calle 10 # 5-20" required>
+              <small class="error" id="address-error"></small>
+            </div>
+            <div class="field full">
+              <label for="extra">Apartamento, torre o barrio <span class="opt">(opcional)</span></label>
+              <input id="extra" name="extra" type="text" placeholder="Torre 2, apto 301">
+            </div>
+          </div>
+        </fieldset>
+      </form>
+
+      <aside class="summary card" aria-label="Resumen del pedido">
+        <h2>Resumen del pedido</h2>
+        <ul id="summary-items" class="summary__items"></ul>
+        <dl class="totals">
+          <div><dt>Subtotal</dt><dd id="subtotal">$0.00</dd></div>
+          <div><dt>Envío</dt><dd>Gratis</dd></div>
+          <div class="grand"><dt>Total</dt><dd id="total">$0.00</dd></div>
+        </dl>
+        <button type="submit" form="checkout-form" id="pay" class="btn btn--pay">Pagar</button>
+        <p class="secure">Pago simulado · tus datos no se envían a ningún servidor</p>
+      </aside>
+    </div>
+
+    <section id="success" class="card success" hidden aria-live="polite">
+      <div class="check">✓</div>
+      <h2>¡Pedido realizado!</h2>
+      <p id="success-text"></p>
+      <p class="order">Pedido <strong id="order-number"></strong> · Total <strong id="order-total"></strong></p>
+      <a class="btn" href="index.html">Volver a la tienda</a>
+    </section>
+  </div>
+
+  <script src="Js/storage.js"></script>
+  <script src="Js/cart.js"></script>
+  <script src="Js/checkout.js"></script>
+  <script src="Js/api.js"></script>
+  <script src="Js/app.js"></script>
+  <script src="Js/ui.js"></script>
+  <script src="Js/filters.js"></script>
+</body>
+</html>

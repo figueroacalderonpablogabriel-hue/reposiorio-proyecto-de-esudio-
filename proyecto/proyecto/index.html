@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tienda FakeStore - Panel de Productos</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="header">
+    <div class="header__brand">
+      <h1 class="header__title">TIENDA FAKESTORE</h1>
+    </div>
+    <button id="cart-toggle" class="cart-toggle" aria-controls="cart" aria-expanded="false">
+      CARRITO <span id="cart-count" class="badge">0</span>
+    </button>
+  </header>
+
+  <main class="container">
+    
+
+    <section class="toolbar" aria-label="Búsqueda, filtros y orden">
+      <div class="field field--search">
+        <label for="search">Buscar</label>
+        <input id="search" type="search" placeholder="Nombre o descripción del producto" autocomplete="off">
+      </div>
+      <div class="field">
+        <label for="category">Categoría</label>
+        <select id="category"><option value="all">Todas</option></select>
+      </div>
+      <div class="field">
+        <label for="sort">Ordenar por</label>
+        <select id="sort">
+          <option value="featured">Destacados</option>
+          <option value="price-asc">Precio: menor a mayor</option>
+          <option value="price-desc">Precio: mayor a menor</option>
+          <option value="name-asc">Nombre: A-Z</option>
+          <option value="name-desc">Nombre: Z-A</option>
+          <option value="rating-desc">Mejor valorados</option>
+        </select>
+      </div>
+    </section>
+
+    <div class="table-header-info">
+      <h2 class="section-title">Productos</h2>
+      <p id="status" class="status" role="status" aria-live="polite"></p>
+    </div>
+
+    <div class="matrix-head" aria-hidden="true">
+      <span>Vista</span>
+      <span>Categoría</span>
+      <span>Producto</span>
+      <span>Valoración</span>
+      <span>Precio</span>
+      <span>Acción</span>
+    </div>
+
+    <section id="products" class="grid grid--matrix" aria-label="Lista de productos"></section>
+  </main>
+
+  <div id="overlay" class="overlay"></div>
+  
+  <aside id="cart" class="cart" aria-label="Carrito de compras">
+    <div class="cart__header">
+      <h2>CARRITO <small>tu carrito</small></h2>
+      <button id="cart-close" class="icon-btn" aria-label="Cerrar carrito">X</button>
+    </div>
+    <ul id="cart-items" class="cart__items"></ul>
+    <div class="cart__footer">
+      <p class="cart__total">TOTAL <strong id="cart-total">$0.00</strong></p>
+      <div class="cart__actions">
+        <button id="cart-clear" class="btn btn--ghost">Vaciar carrito</button>
+        <button id="cart-checkout" class="btn">Finalizar compra</button>
+      </div>
+    </div>
+  </aside>
+
+  <script src="js/api.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/filters.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
